@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zach & Lucia's Colombia Wedding — Trip Planner 🇨🇴</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#E8A838;--orange:#E07B3C;--green:#2D6A4F;--green-light:#40916C;
+  --cream:#FFF8F0;--cream2:#FEF3E2;--dark:#1A1A2E;--gray:#6B7280;
+  --radius:16px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--dark);background:var(--cream);line-height:1.6}
+h1,h2,h3,h4{font-family:'Playfair Display',serif}
+.container{max-width:900px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;background:rgba(255,248,240,.92);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(0,0,0,.06)}
+nav .container{display:flex;justify-content:space-between;align-items:center;height:56px}
+nav a{text-decoration:none;color:var(--dark);font-size:13px;font-weight:500;opacity:.7;transition:opacity .2s}
+nav a:hover{opacity:1}
+.nav-links{display:flex;gap:20px}
+@media(max-width:640px){.nav-links{display:none}}
+
+/* HERO */
+.hero{padding:140px 24px 80px;text-align:center;background:linear-gradient(135deg,var(--cream) 0%,var(--cream2) 50%,#FDE8CD 100%);position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,var(--cream))}
+.hero .flag{font-size:64px;margin-bottom:16px;display:block}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;margin-bottom:12px;line-height:1.15}
+.hero h1 span{color:var(--orange)}
+.hero .subtitle{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--gray);max-width:560px;margin:0 auto 32px;font-weight:300}
+.hero .dates-badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:40px;font-size:14px;font-weight:500}
+.badge-gold{background:var(--gold);color:#fff}
+.badge-green{background:var(--green);color:#fff}
+
+/* SECTIONS */
+section{padding:80px 0}
+section:nth-child(odd){background:var(--cream)}
+section:nth-child(even){background:#fff}
+.section-label{text-transform:uppercase;letter-spacing:3px;font-size:12px;font-weight:600;color:var(--orange);margin-bottom:8px}
+.section-title{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;margin-bottom:32px}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--gold),var(--orange))}
+.timeline-item{position:relative;margin-bottom:32px}
+.timeline-item::before{content:'';position:absolute;left:-25px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--gold);border:3px solid var(--cream)}
+.timeline-item h4{font-family:'Inter',sans-serif;font-weight:600;font-size:15px;color:var(--orange)}
+.timeline-item h3{font-size:1.2rem;margin:4px 0 4px}
+.timeline-item p{color:var(--gray);font-size:14px}
+
+/* CARDS */
+.card-grid{display:grid;gap:20px}
+.card-grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:var(--cream);border-radius:var(--radius);padding:28px;border:1px solid rgba(0,0,0,.05);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.card-icon{font-size:28px;margin-bottom:12px;display:block}
+.card h3{font-size:1.1rem;margin-bottom:8px}
+.card p,.card li{font-size:14px;color:var(--gray)}
+.card ul{list-style:none;padding:0}
+.card ul li{padding:4px 0;border-bottom:1px solid rgba(0,0,0,.04)}
+.card ul li:last-child{border:none}
+.card ul li::before{content:'→ ';color:var(--orange);font-weight:600}
+
+/* FLIGHT INSIGHT */
+.insight-box{background:linear-gradient(135deg,#FEF3E2,#FDEBD0);border-radius:var(--radius);padding:32px;margin-bottom:24px;border-left:4px solid var(--gold)}
+.insight-box .big-save{font-size:2rem;font-weight:900;color:var(--green);font-family:'Playfair Display',serif}
+.insight-box p{font-size:15px;margin-top:8px}
+.compare{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin:24px 0}
+.compare-card{background:#fff;border-radius:12px;padding:20px;text-align:center;border:2px solid rgba(0,0,0,.06)}
+.compare-card.better{border-color:var(--green);background:#F0FFF4}
+.compare-card .price{font-size:1.8rem;font-weight:700;font-family:'Playfair Display',serif}
+.compare-card.better .price{color:var(--green)}
+.compare-card .label{font-size:12px;color:var(--gray);margin-top:4px}
+.compare-vs{font-weight:700;color:var(--orange);font-size:18px}
+@media(max-width:500px){.compare{grid-template-columns:1fr;}.compare-vs{text-align:center}}
+
+.tip{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:14px}
+.tip:last-child{border:none}
+.tip-icon{font-size:20px;flex-shrink:0}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:40px;font-size:14px;font-weight:600;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.btn-primary{background:var(--orange);color:#fff}
+.btn-outline{background:transparent;color:var(--green);border:2px solid var(--green)}
+
+/* ACCOMMODATION */
+.accom-city{margin-bottom:32px}
+.accom-city h3{font-size:1.2rem;margin-bottom:4px}
+.accom-city .neighborhood{font-size:13px;color:var(--green-light);font-weight:500;margin-bottom:12px}
+.price-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:14px}
+.price-row:last-child{border:none}
+.price-row .amt{font-weight:600;color:var(--green)}
+
+/* TRIP OPTIONS */
+.option-cards{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.option-card{border-radius:var(--radius);overflow:hidden;border:2px solid rgba(0,0,0,.06);background:#fff;transition:transform .2s,box-shadow .2s}
+.option-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.1)}
+.option-card.featured{border-color:var(--gold)}
+.option-header{padding:24px;color:#fff;position:relative}
+.option-card:nth-child(1) .option-header{background:linear-gradient(135deg,#95A5A6,#7F8C8D)}
+.option-card:nth-child(2) .option-header{background:linear-gradient(135deg,var(--gold),var(--orange))}
+.option-card:nth-child(3) .option-header{background:linear-gradient(135deg,var(--green),var(--green-light))}
+.option-header .tag{font-size:11px;text-transform:uppercase;letter-spacing:2px;opacity:.85;font-weight:600}
+.option-header h3{font-size:1.3rem;margin:4px 0}
+.option-header .dates{font-size:13px;opacity:.85}
+.option-body{padding:24px}
+.option-body .price-range{font-size:1.6rem;font-weight:700;font-family:'Playfair Display',serif;color:var(--dark);margin-bottom:12px}
+.option-body .detail{font-size:13px;color:var(--gray);padding:4px 0}
+
+/* CALCULATOR */
+.calculator{background:linear-gradient(135deg,var(--dark),#16213E);border-radius:var(--radius);padding:40px;color:#fff;margin-top:40px}
+.calculator h3{font-size:1.4rem;margin-bottom:20px;color:#fff}
+.calc-row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.calc-group{flex:1;min-width:180px}
+.calc-group label{font-size:12px;opacity:.7;display:block;margin-bottom:6px}
+.calc-group select{width:100%;padding:10px 14px;border-radius:8px;border:none;font-size:14px;background:#fff;color:var(--dark);cursor:pointer}
+.calc-result{margin-top:20px;padding:20px;background:rgba(255,255,255,.1);border-radius:12px;text-align:center}
+.calc-result .total{font-size:2.2rem;font-weight:900;font-family:'Playfair Display',serif;color:var(--gold)}
+.calc-result .breakdown{font-size:13px;opacity:.7;margin-top:8px}
+
+/* COST OF LIVING */
+.cost-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.cost-item{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--cream);border-radius:12px}
+.cost-item .emoji{font-size:20px;margin-right:10px}
+.cost-item .label{flex:1;font-size:14px}
+.cost-item .price{font-weight:700;color:var(--green);font-size:15px}
+
+/* PRO TIPS */
+.tips-grid{display:grid;gap:12px}
+.tip-card{display:flex;gap:16px;padding:18px 22px;background:var(--cream);border-radius:12px;font-size:14px;align-items:flex-start}
+.tip-card .emoji{font-size:22px;flex-shrink:0}
+
+/* FOOTER */
+footer{background:var(--dark);color:#fff;padding:60px 0 40px;text-align:center}
+footer h3{font-size:1.4rem;margin-bottom:20px;color:var(--gold)}
+footer .links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+footer .links a{color:#fff;text-decoration:none;padding:10px 20px;border:1px solid rgba(255,255,255,.2);border-radius:40px;font-size:13px;transition:background .2s}
+footer .links a:hover{background:rgba(255,255,255,.1)}
+footer .footer-note{font-size:12px;opacity:.4;margin-top:20px}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="container">
+<a href="#" style="font-family:'Playfair Display',serif;font-weight:700;font-size:16px;opacity:1">🇨🇴 Z&L Colombia</a>
+<div class="nav-links">
+<a href="#schedule">Schedule</a>
+<a href="#flights">Flights</a>
+<a href="#accommodation">Stays</a>
+<a href="#options">Trip Options</a>
+<a href="#costs">Costs</a>
+<a href="#tips">Tips</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<span class="flag">🇨🇴</span>
+<h1>Zach & Lucia's <span>Colombia</span> Wedding</h1>
+<p class="subtitle">Your trip planner for the wedding in Cali and an unforgettable group adventure through Colombia</p>
+<div class="dates-badges">
+<span class="badge badge-gold">💒 Wedding: Jul 24–26, 2026</span>
+<span class="badge badge-green">🌴 Cartagena: Jul 28–31</span>
+</div>
+</div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+<div class="container">
+<div class="section-label">Wedding Weekend</div>
+<h2 class="section-title">The Schedule</h2>
+<p style="color:var(--gray);margin-bottom:32px;font-size:15px">📍 Hacienda Las Mañanitas, Cali, Colombia</p>
+<div class="timeline">
+<div class="timeline-item">
+<h4>Thursday, July 24</h4>
+<h3>🥂 Welcome Dinner</h3>
+<p>5:30 PM — Kick off the celebration with the wedding party</p>
+</div>
+<div class="timeline-item">
+<h4>Thursday, July 24</h4>
+<h3>💃 Salsa Night</h3>
+<p>9:30 PM — You're in the salsa capital of the world. Let's dance.</p>
+</div>
+<div class="timeline-item">
+<h4>Friday, July 25</h4>
+<h3>💍 Ceremony & Reception</h3>
+<p>4:00 PM — The main event</p>
+</div>
+<div class="timeline-item">
+<h4>Sunday, July 26</h4>
+<h3>🥞 Sunday Brunch</h3>
+<p>Morning send-off brunch before the next adventure</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FLIGHTS -->
+<section id="flights">
+<div class="container">
+<div class="section-label">Flight Strategy</div>
+<h2 class="section-title">Longer Trip = Cheaper Flight ✈️</h2>
+
+<div class="insight-box">
+<p style="font-size:13px;color:var(--gray);margin-bottom:8px">Real example from Austin, TX:</p>
+<div class="compare">
+<div class="compare-card">
+<div class="price">$636</div>
+<div class="label">Jul 23 → Jul 27<br>4 days, wedding only</div>
+</div>
+<div class="compare-vs">vs</div>
+<div class="compare-card better">
+<div class="price">$444</div>
+<div class="label">Jul 21 → Aug 4<br>14 days, full trip</div>
+</div>
+</div>
+<p class="big-save">Save $192 by staying longer 🤯</p>
+<p>Midweek flights are cheaper. A longer trip often costs <em>less</em> in airfare — and Colombia is so affordable, your daily spend is tiny.</p>
+</div>
+
+<div style="margin-bottom:24px">
+<div class="tip"><span class="tip-icon">🔍</span><span><strong>Search your city.</strong> This pattern holds from most US cities — play with dates on Google Flights.</span></div>
+<div class="tip"><span class="tip-icon">✂️</span><span><strong>Try open-jaw flights.</strong> Fly into Cali (CLO), fly home from Cartagena (CTG) or Medellín (MDE). Saves backtracking and can be cheaper.</span></div>
+<div class="tip"><span class="tip-icon">📅</span><span><strong>Extend by a few days.</strong> Adding 2-3 days on either end often drops the price significantly.</span></div>
+<div class="tip"><span class="tip-icon">⚡</span><span><strong>Book NOW.</strong> Prices are rising due to geopolitics and demand. Don't wait.</span></div>
+</div>
+
+<a href="https://www.google.com/travel/flights/search?tfs=CBwQAhopEgoyMDI2LTA3LTIxagwIAhIIL20vMG4yenJyDAgCEggvbS8wMWxmcRopEgoyMDI2LTA4LTA0agwIAhIIL20vMDFsZnFyDAgCEggvbS8wbjJ6cBIBAUABSAFwAYIBCwj___________8BQAFIAZgBAQ" target="_blank" class="btn btn-primary">Search Google Flights →</a>
+</div>
+</section>
+
+<!-- ACCOMMODATION -->
+<section id="accommodation">
+<div class="container">
+<div class="section-label">Where to Stay</div>
+<h2 class="section-title">Colombia Is Absurdly Affordable 🏠</h2>
+
+<div class="card-grid cols-3">
+<div class="card">
+<span class="card-icon">🌿</span>
+<h3>Cali</h3>
+<div class="neighborhood">📍 San Antonio · Granada</div>
+<ul>
+<li>Entire apt: $25–45/night</li>
+<li>Private room: $15–25/night</li>
+<li>Hostel: $12–20/night</li>
+</ul>
+</div>
+<div class="card">
+<span class="card-icon">🏰</span>
+<h3>Cartagena</h3>
+<div class="neighborhood">📍 Getsemaní · Walled City</div>
+<ul>
+<li>Entire apt: $40–80/night</li>
+<li>Private room: $20–35/night</li>
+<li>Hostel: $15–25/night</li>
+</ul>
+</div>
+<div class="card">
+<span class="card-icon">🏔️</span>
+<h3>Medellín</h3>
+<div class="neighborhood">📍 Laureles · El Poblado</div>
+<ul>
+<li>Entire apt: $30–55/night</li>
+<li>Private room: $15–25/night</li>
+<li>Hostel: $12–18/night</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TRIP OPTIONS -->
+<section id="options">
+<div class="container">
+<div class="section-label">Choose Your Adventure</div>
+<h2 class="section-title">Trip Options</h2>
+
+<div class="option-cards">
+<div class="option-card">
+<div class="option-header">
+<div class="tag">Quick Trip</div>
+<h3>Wedding Only</h3>
+<div class="dates">Jul 23–27 · 4 days</div>
+</div>
+<div class="option-body">
+<div class="price-range">$800–1,200</div>
+<div class="detail">📍 Cali only</div>
+<div class="detail">🏠 4 nights accommodation</div>
+<div class="detail">✈️ Round trip to CLO</div>
+<div class="detail">🍽️ Food + activities</div>
+</div>
+</div>
+
+<div class="option-card featured">
+<div class="option-header">
+<div class="tag">⭐ Most Popular</div>
+<h3>Wedding + Cartagena</h3>
+<div class="dates">Jul 21–31 · 10 days</div>
+</div>
+<div class="option-body">
+<div class="price-range">$1,100–1,650</div>
+<div class="detail">📍 Cali → Cartagena</div>
+<div class="detail">🏠 7 nights Cali + 3 nights Cartagena</div>
+<div class="detail">✈️ International flight + CLO→CTG (~$30–50)</div>
+<div class="detail">🌊 Beach time + colonial city</div>
+</div>
+</div>
+
+<div class="option-card">
+<div class="option-header">
+<div class="tag">Full Send</div>
+<h3>Extended Colombia</h3>
+<div class="dates">Jul 21 – Aug 4 · 14 days</div>
+</div>
+<div class="option-body">
+<div class="price-range">$1,400–2,200</div>
+<div class="detail">📍 Cali → Cartagena → Medellín</div>
+<div class="detail">🏠 7 + 4 + 3 nights</div>
+<div class="detail">✈️ International + 2 internal (~$60–100)</div>
+<div class="detail">🎉 The ultimate Colombia experience</div>
+</div>
+</div>
+</div>
+
+<!-- CALCULATOR -->
+<div class="calculator">
+<h3>💰 Estimate Your Trip Cost</h3>
+<div class="calc-row">
+<div class="calc-group">
+<label>Trip Length</label>
+<select id="calcTrip">
+<option value="4">Wedding Only (4 days)</option>
+<option value="10" selected>Wedding + Cartagena (10 days)</option>
+<option value="14">Extended Colombia (14 days)</option>
+</select>
+</div>
+<div class="calc-group">
+<label>Accommodation Style</label>
+<select id="calcAccom">
+<option value="hostel">Hostel ($12–20/night)</option>
+<option value="private">Private Room ($15–30/night)</option>
+<option value="apt" selected>Entire Apartment ($30–55/night)</option>
+</select>
+</div>
+<div class="calc-group">
+<label>Your Flight Budget</label>
+<select id="calcFlight">
+<option value="400">~$400 (great deal)</option>
+<option value="550" selected>~$550 (average)</option>
+<option value="700">~$700 (last minute)</option>
+</select>
+</div>
+</div>
+<div class="calc-result">
+<div class="total" id="calcTotal">$1,330</div>
+<div class="breakdown" id="calcBreakdown">Flight $550 + Accommodation $420 + Food & Fun $360</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- COST OF LIVING -->
+<section id="costs">
+<div class="container">
+<div class="section-label">Daily Life</div>
+<h2 class="section-title">Cost of Living in Colombia 💸</h2>
+<div class="cost-grid">
+<div class="cost-item"><span class="emoji">🍽️</span><span class="label">Restaurant meal</span><span class="price">~$6</span></div>
+<div class="cost-item"><span class="emoji">🥂</span><span class="label">Nice dinner for two</span><span class="price">~$30</span></div>
+<div class="cost-item"><span class="emoji">🍺</span><span class="label">Beer</span><span class="price">$1.50–3</span></div>
+<div class="cost-item"><span class="emoji">☕</span><span class="label">Coffee</span><span class="price">$1–2</span></div>
+<div class="cost-item"><span class="emoji">🚗</span><span class="label">Uber across town</span><span class="price">$2–4</span></div>
+<div class="cost-item"><span class="emoji">💆</span><span class="label">Massage (1hr)</span><span class="price">~$15</span></div>
+</div>
+<div style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap">
+<div style="flex:1;min-width:220px;padding:20px;background:var(--cream2);border-radius:12px;text-align:center">
+<div style="font-size:1.6rem;font-weight:700;color:var(--green);font-family:'Playfair Display',serif">$25–35/day</div>
+<div style="font-size:13px;color:var(--gray);margin-top:4px">Budget traveler</div>
+</div>
+<div style="flex:1;min-width:220px;padding:20px;background:var(--cream2);border-radius:12px;text-align:center">
+<div style="font-size:1.6rem;font-weight:700;color:var(--gold);font-family:'Playfair Display',serif">$40–60/day</div>
+<div style="font-size:13px;color:var(--gray);margin-top:4px">Comfortable traveler</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PRO TIPS -->
+<section id="tips">
+<div class="container">
+<div class="section-label">Know Before You Go</div>
+<h2 class="section-title">Pro Tips 🧠</h2>
+<div class="tips-grid">
+<div class="tip-card"><span class="emoji">🛂</span><span><strong>No visa needed.</strong> US citizens get 90 days on arrival. Just bring your passport.</span></div>
+<div class="tip-card"><span class="emoji">💱</span><span><strong>Currency:</strong> Colombian Peso (COP). ~4,200 COP = $1 USD. Cards accepted widely, but carry some cash.</span></div>
+<div class="tip-card"><span class="emoji">📱</span><span><strong>Uber works everywhere</strong> in Colombia. Download it before you go. Super cheap.</span></div>
+<div class="tip-card"><span class="emoji">💃</span><span><strong>Cali = Salsa Capital of the World.</strong> Take a lesson. Go to a salsoteca. You won't regret it.</span></div>
+<div class="tip-card"><span class="emoji">💧</span><span><strong>Tap water:</strong> Stick to bottled water in most places. Bogotá tap is fine, but play it safe elsewhere.</span></div>
+<div class="tip-card"><span class="emoji">⚡</span><span><strong>Book flights NOW.</strong> Prices are climbing due to geopolitics and seasonal demand. Earlier = cheaper.</span></div>
+<div class="tip-card"><span class="emoji">🌡️</span><span><strong>Weather:</strong> Cali is warm year-round (~85°F). Cartagena is hot and humid. Pack light!</span></div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<h3>Ready to Book? 🇨🇴</h3>
+<div class="links">
+<a href="https://www.google.com/travel/flights/search?tfs=CBwQAhopEgoyMDI2LTA3LTIxagwIAhIIL20vMG4yenJyDAgCEggvbS8wMWxmcRopEgoyMDI2LTA4LTA0agwIAhIIL20vMDFsZnFyDAgCEggvbS8wbjJ6cBIBAUABSAFwAYIBCwj___________8BQAFIAZgBAQ" target="_blank">✈️ Google Flights</a>
+<a href="https://www.airbnb.com/s/Cali--Colombia/homes" target="_blank">🏠 Airbnb Cali</a>
+<a href="https://www.airbnb.com/s/Cartagena--Colombia/homes" target="_blank">🏰 Airbnb Cartagena</a>
+<a href="https://www.airbnb.com/s/Medellín--Colombia/homes" target="_blank">🏔️ Airbnb Medellín</a>
+</div>
+<p style="font-size:14px;opacity:.7">See you in Colombia! 🎉</p>
+<p class="footer-note">Made with ❤️ for Zach & Lucia's wedding crew</p>
+</div>
+</footer>
+
+<script>
+// Calculator
+const data = {
+  accom: {
+    hostel: {4:16,10:17,14:16},
+    private: {4:22,10:23,14:22},
+    apt: {4:38,10:42,14:40}
+  },
+  food: {4:45,10:36,14:33},
+  internal: {4:0,10:40,14:80}
+};
+
+function calc() {
+  const days = parseInt(document.getElementById('calcTrip').value);
+  const accom = document.getElementById('calcAccom').value;
+  const flight = parseInt(document.getElementById('calcFlight').value);
+  const nights = days - 1;
+  const accomPerNight = data.accom[accom][days];
+  const accomTotal = accomPerNight * nights;
+  const foodTotal = data.food[days] * days;
+  const internal = data.internal[days];
+  const total = flight + accomTotal + foodTotal + internal;
+  document.getElementById('calcTotal').textContent = '$' + total.toLocaleString();
+  const parts = [`Flight $${flight}`, `Accommodation $${accomTotal}`, `Food & Fun $${foodTotal}`];
+  if (internal > 0) parts.push(`Internal flights $${internal}`);
+  document.getElementById('calcBreakdown').textContent = parts.join(' + ');
+}
+
+document.getElementById('calcTrip').addEventListener('change', calc);
+document.getElementById('calcAccom').addEventListener('change', calc);
+document.getElementById('calcFlight').addEventListener('change', calc);
+calc();
+</script>
+</body>
+</html>
